@@ -1,26 +1,34 @@
 import { ImageBackground, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Image } from "@rneui/themed";
 import { useNavigation } from '@react-navigation/native';
 import  Icone from "react-native-vector-icons/Entypo"
 import Icone2 from "react-native-vector-icons/Fontisto"
+import { videos } from '../../constante/videos';
+import { categories } from '../../constante/categories';
 
-const MaxiCards = ( {item, type} ) => {
+const MaxiCards = ( {item, type, route, filtreVideos} ) => {
   
   const navigation = useNavigation();
-
-  const onPress= () => {   
+  
+  // Envoyer les données dans Détails
+  const onPress= () => {
     // console.log("first", navigation)
-     navigation.navigate('Details', {
-      item: item
-    })
-    }
+
+     navigation.navigate('Details', { item: item })
+
+  }
+
+  // Filtrer les vidéos selon la catégorie
+  const onPress1= () => {
+    filtreVideos(item.id)
+  }
 
   return (
     
     <View>
 
-  {/* Si la props type="categories" alors voir 2 */}
+  {/* Si la props type="categories" alors voir 1 */}
       
       {
 
@@ -30,7 +38,7 @@ const MaxiCards = ( {item, type} ) => {
       <View style={styles.viewCategory}>
         <Button
           containerStyle={styles.buttonCategory}
-          // onPress={onPress}
+          onPress={ onPress1 }
           titleStyle={styles.titleStyle}
           title={item.titre.substring(0,10)}
           color='rgba(255, 25, 15, 1)'
@@ -42,15 +50,12 @@ const MaxiCards = ( {item, type} ) => {
 
       // 2
       <View style={styles.card}>
-
         <Image
           containerStyle={styles.videoscategory}
           source={ item.image }
           onPress={ onPress }
         />
-          
         <Text style={styles.block}>{item.titre}</Text>
-        
       </View>
 
       }

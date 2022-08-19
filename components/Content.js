@@ -1,36 +1,86 @@
-import { StyleSheet, Text, View,FlatList } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View,FlatList, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
 import MiniCards from './cards/MiniCards'
 import MaxiCards from './cards/MaxiCards'
 import MaxiVideo from './cards/MaxiVideo'
 import { categories } from '../constante/categories'
 import { videos } from '../constante/videos'
+import Icone from "react-native-vector-icons/AntDesign"
 
 
 const Content = () => {
+
+  const [getVideos , setVideos] = useState(videos) ;
+
+  // const filtre = (id) => {
+  //   videos.filter( item => item.id == id )
+  // }
+
+  // console.log(filtre)
+
+  const filtreVideos = (id) => { 
+  // Filtrer les vidéos selon la catégorie
+
+    // console.log( id )
+    setVideos ( videos.filter( item => item.categoriesId == id ) )
+  }
+
+  const filtreVideosà0 = () => { 
+  // Réafficher toutes les vidéos
+    setVideos ( videos )
+  }
+
+  
+  const ajouter = (getVideos) => {
+    // Fonction nfn pour AJOUTER avec un bouton
+        // raccourci = clg
+        console.log(getVideos)
+
+        if (getVideos!="") {
+            setTask ([ ...getTask,
+                {id : getTask.length + 1,
+                tache : getText, getTextDial,
+                categoriesId:3,
+                titre:"bienvenue",
+                description:"bla bla",
+                image:require('../images/1.jpeg'),
+                tendance:0,
+                date:"12/02/2022",}
+            ])
+            // Remise à zéro du texte de l'input
+            // setText("")
+        }        
+  }
+
   return (
   <View style={styles.content}>
-      
-    <Text style={styles.textcontent}>Catégories</Text>
+
+    <View style={styles.categorycontent}>
+    <TouchableOpacity onPress={ filtreVideosà0 }>
+      <Text style={styles.textcontent}>Catégories</Text>
+    </TouchableOpacity>
+    <Icone name='pluscircleo' size={25} color='black' onPress={ ajouter } />
+    </View>
 
     <FlatList
-      contentContainerStyle= { styles.flatlisttendances}
+      contentContainerStyle= { styles.flatlisttendances }
 
       data={categories}
 
-      renderItem={ ({item})=> <MaxiCards type='categories' item = { item } /> }
+      renderItem={ ({item}) =>
+      <MaxiCards type='categories' item = { item } filtreVideos={filtreVideos} /> }
 
-      keyExtractor={(item) => item.id}
+      keyExtractor={ (item) => item.id }
 
       horizontal
     />
 
     <FlatList
-      contentContainerStyle= { styles.flatlisttendances} 
+      contentContainerStyle= { styles.flatlisttendances2 } 
 
       // horizontal
 
-      data={videos}
+      data={getVideos}
 
       renderItem={ ({item}) => <MaxiCards item = { item } /> }
 
@@ -46,22 +96,33 @@ export default Content
 const styles = StyleSheet.create({
 
   content:{
-    flex:1,
+    // flex:1,
     // backgroundColor:'rgba(55, 245, 39, 0.5)',
+  },
+
+  categorycontent:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignContent:'center',
+    padding:10,
   },
 
   textcontent:{
     // textAlign:"center",
-    paddingHorizontal:10,
+    // paddingHorizontal:10,
     color:'black',
     fontSize:15,
     fontWeight:'500',
     fontStyle:"italic",
-    marginVertical:5
+    // marginVertical:5
   },
 
   // flatlisttendances:{
-  //   // flex:1,
+  //   flex:2,
   // },
-   
+
+  // flatlisttendances2:{
+  //   flex:3,
+  // },
+
 })

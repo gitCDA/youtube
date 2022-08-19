@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import  Icone from "react-native-vector-icons/Entypo"
@@ -14,24 +14,22 @@ const Header = () => {
     const goto = () => {
         
         // console.log("first", navigation)
-        
+        navigation.navigate('Home')
     
     }
 
   return (
     
     <View style={styles.header}>
-        <View style={styles.viewheader}>
+
+        <TouchableOpacity style={styles.viewheader} onPress={ goto }>
             <Icone name='youtube' size={35} color='white' />
             <Text style={styles.textheader}>Youtube</Text>
-        </View>
+        </TouchableOpacity>
 
         <Icone2 name='search' size={25} color='white'
          style={styles.icone2}
-
-         onPress={ <Input
-            placeholder='BASIC INPUT'
-            /> }
+        //  onPress={ }
          />
 
         {/* <Button
