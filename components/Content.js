@@ -31,26 +31,25 @@ const Content = () => {
   }
 
   
-  const ajouter = (getVideos) => {
-    // Fonction nfn pour AJOUTER avec un bouton
-        // raccourci = clg
-        console.log(getVideos)
+  // const ajouter = (getVideos) => {
+  //   // Fonction nfn pour AJOUTER avec un bouton
+  //       // raccourci = clg
+  //       console.log(getVideos)
 
-        if (getVideos!="") {
-            setTask ([ ...getTask,
-                {id : getTask.length + 1,
-                tache : getText, getTextDial,
-                categoriesId:3,
-                titre:"bienvenue",
-                description:"bla bla",
-                image:require('../images/1.jpeg'),
-                tendance:0,
-                date:"12/02/2022",}
-            ])
-            // Remise à zéro du texte de l'input
-            // setText("")
-        }        
-  }
+  //       if (getVideos!="") {
+  //           setTask ([ ...getVideos,
+  //               {id : getVideos.length + 1,
+  //               categoriesId: ,
+  //               titre:"bienvenue",
+  //               description:"bla bla",
+  //               image:require('../images/1.jpeg'),
+  //               tendance:0,
+  //               date:"12/02/2022",}
+  //           ])
+  //           // Remise à zéro du texte de l'input
+  //           // setText("")
+  //       }        
+  // }
 
   return (
   <View style={styles.content}>
@@ -59,7 +58,7 @@ const Content = () => {
     <TouchableOpacity onPress={ filtreVideosà0 }>
       <Text style={styles.textcontent}>Catégories</Text>
     </TouchableOpacity>
-    <Icone name='pluscircleo' size={25} color='black' onPress={ ajouter } />
+    <Icone name='pluscircleo' size={25} color='black' />
     </View>
 
     <FlatList

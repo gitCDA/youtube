@@ -37,7 +37,7 @@ const App = () => {
 export default App
 
 const styles = StyleSheet.create({
-  app: { flex:1, },
+  app: { flex:1 },
   // tendances: { flex:1,},
   // content: { flex:2.5,},
 })
