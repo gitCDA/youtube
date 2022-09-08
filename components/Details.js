@@ -10,7 +10,7 @@ import Header from './Header'
 const Details = ( { route } ) => {
 
   // Pour récupérer les données à partir de Home
-  const { item } = route.params;
+  const { item } = route.params ;
   console.log( item )
 
   return (
